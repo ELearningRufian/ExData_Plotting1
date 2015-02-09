@@ -1,0 +1,6 @@
+power<-read.csv2("household_power_consumption.txt", header=TRUE, colClasses=c("character","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric"), sep = ";", dec=".", na.strings="?")
+power<-subset(power,power$Date == "1/2/2007" | power$Date == "2/2/2007")
+power<-cbind(DateTime=as.POSIXct(paste(power$Date, power$Time), format="%d/%m/%Y %H:%M:%S"),power)
+png("plot1.png")
+hist(power$Global_active_power, col="tomato2", main="Global Active Power", xlab="Global Active Power (kilowatts)", ylab="Frequency")
+dev.off()
